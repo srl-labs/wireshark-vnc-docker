@@ -1,0 +1,3 @@
+[submodule "plugins/anysec-dissectors"]
+	path = plugins/anysec-dissectors
+	url = https://github.com/xavixava/anysec-dissectors.git

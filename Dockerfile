@@ -31,5 +31,13 @@ RUN echo "wireshark-common wireshark-common/install-setuid boolean false" | debc
     ln -s /tmp/.shadow /etc/shadow && \
     ln -s /tmp/.gshadow /etc/gshadow
 
+COPY plugins/anysec-dissectors/4.4_anysec_plugins/anysec-heuristics.lua \
+     plugins/anysec-dissectors/4.4_anysec_plugins/mka-ip-heuristics.lua \
+     plugins/anysec-dissectors/4.4_anysec_plugins/helper.lua \
+     /tmp/anysec/
+RUN dest="$(echo /usr/lib/*/wireshark/plugins)" && \
+    cp /tmp/anysec/*.lua "$dest/" && \
+    rm -rf /tmp/anysec
+
 COPY startapp.sh /startapp.sh
 RUN chmod +x /startapp.sh
